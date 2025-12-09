@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8">
+    <title>Librería</title>
+</head>
+<body>
+<div class="container mt-4">
+
+<h2>======= BIBLIOTECA PERSONAL=======</h2>
+<h4>Que desea realizar?</h4>
+<p>1. Agregar nuevo libro</p>
+<p>2. Actualizar información de un libro</p>
+<p>3. Eliminar libro existente</p>
+
+    {% with msgs = get_flashed_messages(with_categories=true) %}
+        {% if msgs %}
+            {% for category, message in msgs %}
+                <div class="alert alert-{{category}}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    {% block contenido %}{% endblock %}
+
+</div>
+</body>
+</html>

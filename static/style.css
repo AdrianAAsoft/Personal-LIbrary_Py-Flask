@@ -1,0 +1,21 @@
+body{
+    background-color: black;
+    color: whitesmoke;
+}
+p{
+    text-align: left;
+    size: 4cm;
+}
+h1,h4,h2{
+   text-align: center;
+}
+
+table{
+    color: gainsboro;
+    border-color: burlywood;
+    background-color: beige;
+    align-self: center;
+}
+thead{
+    background-color: cadetblue;
+}
