@@ -1,6 +1,6 @@
 #Importar libreria de sql que contiene funciones de Base de datos en uso 
 import sql 
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for,request
 
 app = Flask(__name__)
 app.secret_key = "jamon"
@@ -13,12 +13,13 @@ def index():
 #Opciones Agregar un libro
 @app.route("/addLibro", methods = ["Post"])
 def addfront():
-    t = input("Titulo: ")
-    au = input("Autor: ")
-    g = input("Genero: ")
-    an = input("Año del libro: ") 
-    e = int(input("Estado (1. Leido / 2.No leido): "))
-    sql.AddLibro(t, au, g,an, e)
+    if request.method == "Post":
+        t = request.form["Titulo: "]
+        au = request.form["Autor: "]
+        g = request.form["Genero: "]
+        an = request.form["Año del libro: "] 
+        e = int(request.form["Estado (1. Leido / 2.No leido): "])
+        sql.AddLibro(t, au, g,an, e)
 
 
 #Actualizar un libro

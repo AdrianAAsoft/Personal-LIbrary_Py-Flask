@@ -2,12 +2,29 @@
 
 {% block contenido %}
 <h1 class="mb-3">Listado de Libros</h1>
-<table >
-    <thead >
-        <th>Libros</th>
-        <th>Autor</th>
-    </thead>
-</table>
 
+<table>
+    <thead class="titulo">
+        <th>Codigo</th>
+        <th>Titulo</th>
+        <th>Autor</th>
+        <th>Genero</th>
+        <th>Año</th>
+        <th>Lectura</th>
+    </thead>
+
+    <tbody>
+        {% for l in libros %}
+        <tr>
+            <td>{{l.Titulo}}</td>
+            <td>{{l.Autor}}</td>
+            <td>{{l.Genero}}</td>
+            <td>{{l.Genero}}</td>
+            <td>{{l.Ano}}</td>
+            <td>{{"Leido" if l.Estado_Lectura == 1 else "No leido"}}</td>
+        </tr>
+        {% endfor%}
+    </tbody>
+</table>
 
 {% endblock %}

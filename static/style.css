@@ -9,13 +9,39 @@ p{
 h1,h4,h2{
    text-align: center;
 }
-
-table{
-    color: gainsboro;
-    border-color: burlywood;
-    background-color: beige;
-    align-self: center;
+.btn{
+    color: violet;
+    background-color: black;
+    width: 75px;
 }
-thead{
-    background-color: cadetblue;
+.fila{
+    display: flex;
+    justify-content: space-between; /* separa texto y botón */
+    align-items: center;
+    margin: 10px 0;
+}
+table {
+    color: gainsboro;
+    border: 2px solid burlywood;
+    background-color: beige;
+    border-color: plum;
+    width: 60%;            /* opcional */
+    margin: 20px auto;     /* <-- centra la tabla horizontalmente */
+    border-collapse: collapse;
+    text-align: center;    /* centra el contenido dentro */
+}
+
+.titulo {
+    background-color: black;
+    color: violet;
+    font-weight: bold;
+}
+
+.ser{    
+    justify-content: center;
+    width: 300px;              /* tamaño del contenedor */
+    margin: 0 auto;            /* centra horizontal */
+    padding: 1px;
+    border-radius: 5px;
+    backdrop-filter: blur(5px);
 }
