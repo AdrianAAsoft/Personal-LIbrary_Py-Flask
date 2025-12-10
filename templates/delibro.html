@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Eliminar libro{% endblock %}
+
+
+{% block contenido %}
+<h1>Eliminar libro</h1>
+<h2>Listado de Libros</h2>
+<form action="{{ url_for('delfront') }}" method="DELETE">
+
+<table>
+    <thead class="titulo">
+        <th>Codigo</th>
+        <th>Titulo</th>
+        <th>Autor</th>
+        <th>Genero</th>
+        <th>Año</th>
+        <th>Lectura</th>
+        <th></th>
+    </thead>
+
+    <tbody class = "titulo1">
+        {% for l in libros %}
+        <tr>
+            <td>{{l.id}}</td>
+            <td>{{l.Titulo}}</td>
+            <td>{{l.Autor}}</td>
+            <td>{{l.Genero}}</td>
+            <td>{{l.Ano}}</td>
+            <td>{{"Leido" if l.Estado_Lectura == 1 else "No leido" }}</td>
+            <td><button class="btn" type="submit">Eliminar</button></td>
+        </tr>
+        {% endfor%}
+    </tbody>
+</table>
+
+<script>function setids(id){
+    document.getElementById("id").value = id; 
+    const botn = document.querySelectorAll(".btn-update")
+    document.getElementById("libro").textContent = "Nuevos datos para el libro " + id;
+    document.querySelectorAll(".btn-update").forEach(btn => {btn.style.display = "none";});
+    document.querySelectorAll(".btn-update1").forEach(btn => {btn.style.display = "inline-block ";});
+    }
+</script>
+
+    <button type="button" class="btn" onclick="inicio()">Inicio</button>
+    <script>function inicio(){
+        window.location.href = "{{ url_for('index') }}";
+        }
+    </script>
+</form>
+
+{% endblock %}

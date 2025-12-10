@@ -1,30 +1,57 @@
 {% extends "base.html" %}
 
+{% block title %}Inicio{% endblock %}
+
 {% block contenido %}
-<h1 class="mb-3">Listado de Libros</h1>
+<h4>Que desea realizar?</h4>
+<section class="ser">
 
-<table>
-    <thead class="titulo">
-        <th>Codigo</th>
-        <th>Titulo</th>
-        <th>Autor</th>
-        <th>Genero</th>
-        <th>Año</th>
-        <th>Lectura</th>
-    </thead>
+<div class="fila">
+    <p>1. Agregar nuevo libro</p> 
+    <button class="btn" onclick="addLibro()">Agregar</button>
+</div>
 
-    <tbody>
-        {% for l in libros %}
-        <tr>
-            <td>{{l.Titulo}}</td>
-            <td>{{l.Autor}}</td>
-            <td>{{l.Genero}}</td>
-            <td>{{l.Genero}}</td>
-            <td>{{l.Ano}}</td>
-            <td>{{"Leido" if l.Estado_Lectura == 1 else "No leido"}}</td>
-        </tr>
-        {% endfor%}
-    </tbody>
-</table>
+<script>function addLibro(){
+        window.location.href = "{{ url_for('addfront') }}";
+}
+</script>
+
+<div class="fila">
+    <p>2. Actualizar información de un libro</p> 
+    <button class="btn" onclick="updt()">Actualizar</button>
+</div>
+<script>function updt(){
+        window.location.href = "{{ url_for('updtfont') }}";
+}
+</script>
+
+<div class="fila">
+    <p>3. Eliminar libro existente</p> 
+    <button class="btn" onclick="delibr()">Eliminar</button>
+</div>
+<script>function delibr(){
+        window.location.href = "{{ url_for('delfront') }}";
+}
+</script>
+
+<div class="fila">
+    <p>4. Listar libros</p> 
+    <button class="btn" onclick="looklibro()">Buscar</button>
+</div>
+<script>function looklibro(){
+        window.location.href = "{{ url_for('listad') }}";
+}
+</script>
+
+<div class="fila">
+    <p>5. Buscar libros</p> 
+    <button class="btn" onclick="look()">Buscar</button>
+</div>
+<script>function look(){
+        window.location.href = "{{ url_for('listad') }}";
+}
+</script>
+
+</section>
 
 {% endblock %}

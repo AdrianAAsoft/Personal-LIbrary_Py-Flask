@@ -9,35 +9,16 @@
 <div class="container mt-4">
 
 <h2>======= BIBLIOTECA PERSONAL=======</h2>
-<h4>Que desea realizar?</h4>
-<section class="ser">
-<div class="fila">
-<p>1. Agregar nuevo libro</p> <button class="btn" onclick="addLibro()">Agregar</button>
-<script>function addLibro(){
-    fetch('/addLibro',{method:'Post'})
-}
-</script>
-</div>
 
-<div class="fila">
-<p>2. Actualizar información de un libro</p> <button class="btn">Actualizar</button>
-</div>
-<div class="fila">
-<p>3. Eliminar libro existente</p> <button class="btn">Eliminar</button>
-</div>
-<div class="fila">
-<p>4. Buscar libros</p> <button class="btn">Buscar</button>
-</div>
-</section>
-    {% with msgs = get_flashed_messages(with_categories=true) %}
-        {% if msgs %}
-            {% for category, message in msgs %}
-                <div class="alert alert-{{category}}">{{ message }}</div>
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
+{% with msgs = get_flashed_messages(with_categories=true) %}
+    {% if msgs %}
+        {% for category, message in msgs %}
+            <div class="flash-message {{category}}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
 
-    {% block contenido %}{% endblock %}
+{% block contenido %}{% endblock %}
 
 </div>
 </body>

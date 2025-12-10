@@ -95,6 +95,8 @@ def ListLibros():
         resultado = []
         for key in database.scan_iter("libro:*"):
             libro = json.loads(database.get(key))
+            if not isinstance(libro, dict):
+                continue
             resultado.append(libro)
 
         return resultado

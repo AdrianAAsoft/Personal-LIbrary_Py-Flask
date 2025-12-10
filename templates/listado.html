@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Listado de libros{% endblock %}
+
+
+{% block contenido %}
+<h1>Listado de Libros</h1>
+<form action="{{ url_for('listad') }}" method="get">
+
+<table>
+    <thead class="titulo">
+        <th>Codigo</th>
+        <th>Titulo</th>
+        <th>Autor</th>
+        <th>Genero</th>
+        <th>Año</th>
+        <th>Lectura</th>
+    </thead>
+
+    <tbody class = "titulo1">
+        {% for l in libros %}
+        <tr>
+            <td>{{l.id}}</td>
+            <td>{{l.Titulo}}</td>
+            <td>{{l.Autor}}</td>
+            <td>{{l.Genero}}</td>
+            <td>{{l.Ano}}</td>
+            <td>{{"Leido :D" if l.Estado_Lectura == 1 else "X No leido X" }}</td>
+        </tr>
+        {% endfor%}
+    </tbody>
+</table>
+
+    <button type="button" class="btn" onclick="inicio()">Inicio</button>
+    <script>function inicio(){
+        window.location.href = "{{ url_for('index') }}";
+        }
+    </script>
+
+</form>
+
+
+{% endblock %}
