@@ -6,7 +6,7 @@
 {% block contenido %}
 <h1>Eliminar libro</h1>
 <h2>Listado de Libros</h2>
-<form action="{{ url_for('delfront') }}" method="DELETE">
+<form action="{{ url_for('delfront') }}" method="POST">
 
 <table>
     <thead class="titulo">
@@ -28,20 +28,29 @@
             <td>{{l.Genero}}</td>
             <td>{{l.Ano}}</td>
             <td>{{"Leido" if l.Estado_Lectura == 1 else "No leido" }}</td>
-            <td><button class="btn" type="submit">Eliminar</button></td>
+            <td><button class="btn-update" type="button" onclick="setids('{{l.id}}')">Eliminar</button></td>
         </tr>
         {% endfor%}
     </tbody>
 </table>
+<input type="hidden" id="id" name="id">
 
-<script>function setids(id){
+<h2 id="libro"></h2>
+
+<div class="fila1" id="confirmBtns">
+    <button class="btn-update1", type="submit">Confirmar</button>
+    <button class="btn-update1">Cancelar</button>
+</div>
+
+<script>
+function setids(id){
     document.getElementById("id").value = id; 
-    const botn = document.querySelectorAll(".btn-update")
-    document.getElementById("libro").textContent = "Nuevos datos para el libro " + id;
+    document.getElementById("libro").textContent = "Esta apunto de eliminar el libro " + id;
+    document.getElementById("confirmBtns").style.display = "block";
     document.querySelectorAll(".btn-update").forEach(btn => {btn.style.display = "none";});
-    document.querySelectorAll(".btn-update1").forEach(btn => {btn.style.display = "inline-block ";});
+    document.querySelectorAll(".btn-update1").forEach(btn => {btn.style.display = "inline-block";});
     }
-</script>
+</script>   
 
     <button type="button" class="btn" onclick="inicio()">Inicio</button>
     <script>function inicio(){

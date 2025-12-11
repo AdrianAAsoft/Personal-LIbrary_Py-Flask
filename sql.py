@@ -46,7 +46,6 @@ def AddLibro(Titulo,Autor,Genero,Ano,Estado):
 
         database.set(key,json.dumps(nuevo))
 
-        print("Libro Agregado.")
     except Exception as e:
         print("Error al agregar el libro:", e)
 
@@ -68,9 +67,7 @@ def UpdateLibro(id1, Titulo, Autor, Genero, Ano, Estado):
                 }
             )
             database.set(key, json.dumps(libro))
-            print("Se actualizo un libro")
-        else:
-            print("Libro no existe")
+        
     except Exception as e:
         print("Error al actualizar libro:", e)
 
@@ -80,12 +77,9 @@ def DeleteLibro(id1):
 
     try:
         if not database.exists(key):
-            print("Libro no existe")
+            None
         else:
-            if database.delete(key):
-                print("Libro eliminado")
-            else:
-                print("No se elimino ningun libro")
+            database.delete(key)
     except Exception as e:
         print("Error al eliminar libro:", e)
 

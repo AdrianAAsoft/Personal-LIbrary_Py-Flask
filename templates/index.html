@@ -36,7 +36,7 @@
 
 <div class="fila">
     <p>4. Listar libros</p> 
-    <button class="btn" onclick="looklibro()">Buscar</button>
+    <button class="btn" onclick="looklibro()">Mostrar</button>
 </div>
 <script>function looklibro(){
         window.location.href = "{{ url_for('listad') }}";
@@ -48,7 +48,7 @@
     <button class="btn" onclick="look()">Buscar</button>
 </div>
 <script>function look(){
-        window.location.href = "{{ url_for('listad') }}";
+        window.location.href = "{{ url_for('listad_fil') }}";
 }
 </script>
 

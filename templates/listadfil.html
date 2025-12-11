@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}Busqueda de libros{% endblock %}
+
+
+{% block contenido %}
+<h1>Listado de Libros</h1>
+<form action="{{ url_for('listad_fil') }}" method="GET">
+
+    <div style="display: flex; flex-direction: column; width: 250px; gap: 10px;">
+
+    <label for="campo" class="let"><strong>Buscar por:</strong></label>
+    <select name="campo" id="campo" required>
+        <option value="">Seleccione</option>
+        <option value="Titulo">Titulo</option>
+        <option value="Autor">Autor</option>
+        <option value="Genero">Genero</option>
+    </select>
+
+    <label for="valor" class="let"><strong>Valor:</strong></label>
+    <input type="text" id="valor" name="valor" required>
+
+    <button class="btn"  type="submit">Buscar</button>
+
+    </div>
+</form>
+
+<table>
+    <thead class="titulo">
+        <th>Codigo</th>
+        <th>Titulo</th>
+        <th>Autor</th>
+        <th>Genero</th>
+        <th>Año</th>
+        <th>Lectura</th>
+    </thead>
+
+    <tbody class = "titulo1">
+    {% if libros %}
+        {% for l in libros %}
+        <tr>
+            <td>{{l.id}}</td>
+            <td>{{l.Titulo}}</td>
+            <td>{{l.Autor}}</td>
+            <td>{{l.Genero}}</td>
+            <td>{{l.Ano}}</td>
+            <td>{{"Leido :D" if l.Estado_Lectura == 1 else "No leido X" }}</td>
+        </tr>
+        {% endfor%}
+    {% else %}
+        <tr>
+            <td>No hay datos</td>
+        </tr>
+    {% endif %}
+    </tbody>
+</table>
+
+    <button type="button" class="btn" onclick="inicio()">Inicio</button>
+    <script>function inicio(){
+        window.location.href = "{{ url_for('index') }}";
+        }
+    </script>
+
+
+
+
+{% endblock %}

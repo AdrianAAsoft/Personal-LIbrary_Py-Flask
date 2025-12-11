@@ -33,7 +33,6 @@
 
 <script>function setids(id){
     document.getElementById("id").value = id; 
-    const botn = document.querySelectorAll(".btn-update")
     document.getElementById("libro").textContent = "Nuevos datos para el libro " + id;
     document.querySelectorAll(".btn-update").forEach(btn => {btn.style.display = "none";});
     document.querySelectorAll(".btn-update1").forEach(btn => {btn.style.display = "inline-block ";});
@@ -56,7 +55,7 @@
         <label class="let">Estado (1. Leido / 2.No leido):</label>
         <input type="number" name="estado1" required>
     </div>
-    <div class="fila1">    <button class="btn-update1" type="submit" >Guardar</button>
+    <div class="fila1"><button class="btn-update1" type="submit" >Guardar</button>
 </div>
 
 </form>

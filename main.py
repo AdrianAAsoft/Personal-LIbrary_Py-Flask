@@ -7,8 +7,7 @@ app.secret_key = "jamon"
 
 @app.route("/")
 def index():
-    libros = sql.ListLibros()
-    return render_template("index.html",libros=libros)
+    return render_template("index.html")
 
 #Opciones Agregar un libro
 @app.route("/addfront", methods = ["POST","GET"])
@@ -25,13 +24,13 @@ def addfront():
         
         sql.AddLibro(t, au, g,an, e)
         flash("Libro Agregado con exito","success")
-        return redirect(url_for("index")), 200  #201 creado
+        return redirect(url_for("index"))  #201 creado
     
     elif request.method == "GET":
         return render_template("libroadd.html")
     else:
         flash("Metodo no valido","warning")
-        return redirect(url_for("index")),405
+        return redirect(url_for("index"))
     
 #Actualizar un libro
 @app.route("/updtfont", methods = ["POST","GET"])
@@ -53,33 +52,36 @@ def updtfont():
         
         sql.UpdateLibro(id, t, au, g,an, es)
         flash("Libro Actualizado con exito","success")
-        return redirect(url_for("index")), 200  #200 ok
+        return redirect(url_for("index"))  #200 ok
+    
     elif request.method == "GET":
         listar = sql.ListLibros()
         return render_template("updt.html", libros = listar)
+    
     else:
         flash("Metodo no valido","warning")
-        return redirect(url_for("index")),405
+        return redirect(url_for("index"))
     
 #Eliminar un libro
-@app.route("/delfront", methods = ["DELETE","GET"])
+@app.route("/delfront", methods = ["POST","GET"])
 def delfront():
-    if request.method == "DELETE":
+    if request.method == "POST":
         try:
-            sql.DeleteLibro(id)
+            id1 = request.form["id"]
+            sql.DeleteLibro(id1)
             flash("Libro Eliminado con exito","success")
-            return redirect(url_for("index")),200 #200 ok
+            return redirect(url_for("index")) #200 ok
         
         except Exception as e:
             flash("Error: No se pudo eliminar el libro.", "danger")
-            return redirect(url_for("index")), 500
+            return redirect(url_for("index"))
         
     elif request.method == "GET":
         listar = sql.ListLibros()
         return render_template("delibro.html",libros = listar)
     else:
         flash("Metodo no valido","warning")
-        return redirect(url_for("index")),405
+        return redirect(url_for("index"))
     
   #Listado de libros
 @app.route("/listad", methods = ["GET"])
@@ -88,14 +90,19 @@ def listad():
     return render_template("listado.html", libros = listar)
 
 #Busqueda de libros    
-@app.route("/get/id", methods = ["GET"])
-def getpor():
-
-    valor = input("Valor a buscar: ")
-    resultados = None
-    #sql.GetLibro(campos[tipo], valor)
-    return resultados
-
+@app.route("/listad/fil", methods = ["GET"])
+def listad_fil():
+    if request.method == "GET":
+        campo = request.args.get("campo")
+        valor = request.args.get("valor")
+        resultados = []
+        if campo and valor:
+            
+            resultados = sql.GetLibro(campo, valor)
+        return render_template("listadfil.html", libros = resultados)
+    else:
+        flash("Metodo no valido","warning")
+        return redirect(url_for("index"))
 
 
 if __name__ == "__main__":
